@@ -1,5 +1,6 @@
 package com.abdallahyasser.demoapp.logic.dip
 
+import com.abdallahyasser.demoapp.data.MockDataProvider
 import com.abdallahyasser.demoapp.data.relationship.Order
 
 // LECTURE: DIP - High-level modules should not depend on low-level modules. Both should depend on abstractions.
@@ -119,7 +120,7 @@ class ApiOrderRepository : IOrderRepository {
 
 // Low-level module - Mock Repository for Unit Testing
 class MockOrderRepository : IOrderRepository {
-    val savedOrders = mutableListOf<Order>()
+    val savedOrders = MockDataProvider.getAllOrders().toMutableList()
     var shouldFailOnSave = false
 
     override fun saveOrder(order: Order) {
